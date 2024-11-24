@@ -42,7 +42,7 @@ gsid("favourite").width = p(interfaceSize*0.99);
 gsid("interface").fontSize = p(interfaceSize/20);
 gsid("confirm").fontSize = p(interfaceSize/20);
 gsid("confirm").height = p(interfaceSize/15);
-gsid("confirm").width = p(interfaceSize/4+20);
+gsid("confirm").width = p(interfaceSize/3.5+20);
 gsid("set").width = p(interfaceSize/15);
 gsid("set").height = p(interfaceSize/15);
 
@@ -72,30 +72,29 @@ else    {
 
 let favDivs = []
 let i = 0;
-    do{
-      const element = document.getElementById(`fav${i}`)
-      i=i+1;
-      if(element)
-      {favDivs.push(element);
+do{
+    const element = document.getElementById(`fav${i}`)
+    i=i+1;
+    if(element)
+    {favDivs.push(element);
         setSqr(element.style,interfaceSize/7,false);
-        setR(element.style,interfaceSize/20)}
-        
+        setR(element.style,interfaceSize/20)
+    }   
     else break;
-    }while(true);
+}while(true);
 
-    favDivs.forEach((element, i) => {
-      element.onclick = function (){
-            
-        if(document.getElementById("set").checked)
+favDivs.forEach((element, i) => {
+    element.onclick = function (){     
+    if(document.getElementById("set").checked)
         {element.style.backgroundColor = document.getElementById("colorSelector").value;
-         sendToStorage(i,element.style.backgroundColor);
+         sendToStorage("fav"+i,element.style.backgroundColor);
          document.getElementById("color").style.backgroundColor = document.getElementById("colorSelector").value;
         }
-        else
+    else
         {   
             let r,g,b;
-          //if (!(r&&g&&b))   return
-          [r,g,b]= String(element.style.backgroundColor).slice(4,-1).split(", ");
+            //if (!(r&&g&&b))   return
+            [r,g,b]= String(element.style.backgroundColor).slice(4,-1).split(", ");
             //if (!(r&&g&&b))   return
             //alert(r+' '+g+' '+b)
             let rr, gg, bb;
@@ -108,11 +107,11 @@ let i = 0;
             r = r.length===1?"0"+r:r;
             g = g.length===1?"0"+g:g;
             b = b.length===1?"0"+b:b;
-          //alert(r+g+b);
-          let colorValue = "#"+r+g+b;
-          //alert(colorValue)
+            //alert(r+g+b);
+            let colorValue = "#"+r+g+b;
+            //alert(colorValue)
             document.getElementById("colorSelector").value = colorValue;
-        document.getElementById("color").style.backgroundColor = document.getElementById("colorSelector").value;
+            document.getElementById("color").style.backgroundColor = document.getElementById("colorSelector").value;
         }
         
 
@@ -120,12 +119,47 @@ let i = 0;
     )
 
 
-document.getElementById("colorSelector").onchange = function()
-{   sendToStorage("color",document.getElementById("colorSelector").value);
- document.getElementById("color").style.backgroundColor = document.getElementById("colorSelector").value;
-}
+document.getElementById("colorSelector").onchange = 
+    function()
+        {   sendToStorage("color",document.getElementById("colorSelector").value);
+            document.getElementById("color").style.backgroundColor = document.getElementById("colorSelector").value;
+        }
 
-//получение json
+let cellSize = s*4/6/14.5;
+//alert(cellSize);
+let strip = [];
+const elements = document.querySelectorAll('.cell'); 
+let ii = 0;//устанавливаем размер каждой клетки
+elements.forEach((element,ii) => {
+    element.onclick = function()
+        {
+            element.style.backgroundColor = document.getElementById("colorSelector").value;
+            sendToStorage(ii,element.style.backgroundColor);
+            strip[ii] = element.style.backgroundColor;
+            
+        }
+    let bckclr = getFromStorage(ii);
+    if(bckclr === false)
+        {
+            element.style.backgroundColor = "rgb(0,0,0)";
+            sendToStorage(ii,"rgb(0,0,0)");
+        }
+    else
+        {
+            element.style.backgroundColor = bckclr;
+        }
+    element.style.backgroundColor
+    element.style.width = cellSize + 'px'; 
+    element.style.height = cellSize + 'px'; 
+}); 
+let rd = (Math.floor(cellSize / 3)) + 'px';
+let bw= (Math.floor(cellSize / 20)) + 'px';
+if (bw == '0px')  {bw = '1px';};
+let hourss = document.querySelectorAll('.clckrnd');
+hourss.forEach(hr =>{
+    hr.style.borderRadius = rd;
+    hr.style.borderWidth = bw;});
+
 
 
 
@@ -168,22 +202,7 @@ function sendToStorage(key, value){
 
 
 
-let cellSize = s*4/6/14.5;
-/*let orientationIsAlbum = document.documentElement.clientWidth>document.documentElement.clientHeight;
-orientationIsAlbum?(cellSize = Math.floor(document.documentElement.clientHeight/14.5)):(cellSize = Math.floor(document.documentElement.clientWidth/14.5));*/
-//alert(cellSize);
-const elements = document.querySelectorAll('.cell'); //устанавливаем размер каждой клетки
-    elements.forEach(element => {
-        element.onclick = function(){alert(1)}
-        element.style.width = cellSize + 'px'; 
-        element.style.height = cellSize + 'px'; 
-    }); 
-let rd = (Math.floor(cellSize / 3)) + 'px';
-let bw= (Math.floor(cellSize / 20)) + 'px';
-if (bw == '0px')  {bw = '1px';};
-let hourss = document.querySelectorAll('.clckrnd');
-    hourss.forEach(hr =>{hr.style.borderRadius = rd;
-                       hr.style.borderWidth = bw;});
+
 function positioning()
     {
     const coords = [        /*массив координат. первая строка это 12 или 0 часов и далее по стрелке. записаны координаты центра клетки в системе координат, где единичный отрезок это 1 клетка, а поле имеет размерность 14*14 клеток, координаты цетнра доски на поле 7,7 .левого верхнего угла 3,3*/
@@ -233,12 +252,14 @@ window.onload = function ()
 {
     positioning();
     favDivs.forEach((element, i) => {
-        let StorVal = getFromStorage(i);
-        if(StorVal)
-        element.style.backgroundColor = StorVal;
+        let StorVal = getFromStorage("fav"+i);
+        if(!(StorVal === false))
+        {element.style.backgroundColor = StorVal;
+         strip[ii] = element.style.backgroundColor;
+        }
         else
-        element.style.backgroundColor = "rgb(255,255,255)";
-        sendToStorage(i,"rgb(255,255,255)");
+        {element.style.backgroundColor = "rgb(255,255,255)";
+        sendToStorage("fav"+i,"rgb(255,255,255)");}
         
     });
     document.getElementById("colorSelector").value = getFromStorage("color");
