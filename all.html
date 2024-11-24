@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+  <title>colors</title>
+
+  <!--<link href="styles.css" rel="stylesheet">-->
+    
+    
+    
+    <style>
+    
+    /*html{
+     width: 100vw;
+    height: 100vh;
+}
+*/
+body
+{
+    display:flex;
+	background-color:#4d4b41;
+    margin:0;
+
+
+}
+#colorContainer
+{
+    height:600px;
+    width:600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    }
+
+#image
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	height:400px;
+    width:400px;
+    border:1px solid white;
+	border-radius:200px;
+    background-color: rgba(255, 255, 255, 1);
+	-webkit-box-shadow: /*0px 0px 50px 80px rgba(255, 255, 255, 1) inset*/
+                        0px 0px 50px 80px rgba(255, 255, 255, 1);
+    -moz-box-shadow: /*0px 0px 50px 80px rgba(255, 255, 255, 1) inset,*/
+                     0px 0px 50px 80px rgba(255, 255, 255, 1);
+    box-shadow:      0px 0px 50px 80px rgba(255, 255, 255, 1);
+    /*overflow: hidden;*/
+}
+#color
+{
+	/*transform:translate(400px, 90px);*/
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+	height:400px;
+	width:400px;
+	background-color: rgba(255,255,0,1);
+	border:0px solid red;
+	border-radius:200px;
+    
+-webkit-box-shadow: 0px 0px 68px 72px rgba(252, 252, 250, 1) inset;
+-moz-box-shadow: 0px 0px 68px 72px rgba(252, 252, 250, 1) inset;
+box-shadow: 0px 0px 68px 72px rgb(255, 255, 255,) inset;
+        
+    
+    
+	/*box-shadow:0px 0px 70px yellow;*/
+    
+}
+    #lamp
+{
+	width:200px;
+	height:300px;
+	/*top:200px;
+	left:200px;*/
+}
+
+
+
+
+
+
+#interface
+{
+    text-align:center;
+    display:flex;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+    
+}
+#colorLabel
+{
+    margin:10px;
+}
+#colorInput
+{
+    display:flex;
+    flex-wrap: nowrap;
+    align-items:center;
+    height: auto;
+}
+#colorSelect
+{
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    height: auto;
+    justify-content:center;
+    color: aliceblue;
+}
+#colorSelector
+{
+    margin:10px;
+}
+#confirmBut
+{
+        display:flex;
+    flex-wrap: nowrap;
+    align-items:center;
+}
+#confirm
+{
+   
+}
+favorite
+{
+    text-align: center;
+    display:flex;
+    align-items: center;
+    
+}
+.fav
+{
+    display:inline-block;
+    background-color: rgb(255,255,255);
+    border: 2px solid black;
+    border-radius:5px;
+    height:20px;
+    width:20px;
+    margin: 5px;
+    padding: 0px;
+}
+
+
+#set
+{
+    margin:10px;
+}
+label
+    {
+        color:white;
+    }
+
+
+
+
+
+
+
+
+#clockround /*общий контейнер для 12 элементов по кругу*/
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.whitee
+{
+    background-color:white;
+}
+
+.cell   /*этот класс имеют все клетки*/
+{
+    width:40px;
+    height:40px;
+    border-width: 0px;
+    border-style: solid;
+    margin: 0px;
+    padding: 0px;
+}
+.clckrnd    /*класс для каждого из 12 часов*/
+{
+    background-color:white;
+    border-width: 2px;
+    border-color: black;
+    border-style:solid;
+    border-radius:20px;
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    top:0px;
+    left:0px;
+}
+    
+    
+    </style>
+</head>
+
+<body id="body">
+  <div id="colorContainer">
+    <div id="image">
+        <div id = "clockround">
+		<div id = "sqr1" class = "clckrnd cell whitee"></div>
+		<div id = "sqr2" class = "clckrnd cell whitee"></div>
+		<div id = "sqr3" class = "clckrnd cell whitee"></div>
+		<div id = "sqr4" class = "clckrnd cell whitee"></div>
+		<div id = "sqr5" class = "clckrnd cell whitee"></div>
+		<div id = "sqr6" class = "clckrnd cell whitee"></div>
+		<div id = "sqr7" class = "clckrnd cell whitee" style="visibility: hidden"></div>
+		<div id = "sqr8" class = "clckrnd cell whitee"></div>
+		<div id = "sqr9" class = "clckrnd cell whitee"></div>
+		<div id = "sqr10" class = "clckrnd cell whitee"></div>
+		<div id = "sqr11" class = "clckrnd cell whitee"></div>
+		<div id = "sqr12" class = "clckrnd cell whitee"></div>
+
+    
+    </div>
+      <div id="color"><img id="lamp" src="lamp.png"></div>
+      
+    </div>
+  </div>
+
+  
+    
+    <div id="interface">
+    
+      <div id = "favourite">
+        <div id="fav0" class="fav"></div>
+        <div id="fav1" class="fav"></div>
+        <div id="fav2" class="fav"></div>
+        <div id="fav3" class="fav"></div>
+        <div id="fav4" class="fav"></div>
+        <div id="fav5" class="fav"></div>
+        <div id="fav6" class="fav"></div>
+        <div id="fav7" class="fav"></div>
+        <div id="fav8" class="fav"></div>
+        <div id="fav9" class="fav"></div>
+      </div>
+
+      <div id = "colorSelect">
+          <div id="colorInput"> 
+        <label id="colorLabel" for="colorSelector">Цвет&nbsp;свечения</label>
+        <input type="color" value="#FFFF00" id="colorSelector"></div>
+            <div id="confirmBut">
+        <button id="confirm">Применить</button> </div> </div>
+        <div id="checkboxDiv">           
+           <label for="set" id="setLabel">Режим настройки цвета</label>
+            <input type="checkbox" id="set">
+    
+        </div>
+   
+</div>
+    
+      <script>
+          
+          
+          
+          
+          
+/*const GITHUB_API_URL = "https://api.github.com";
+const REPO_OWNER = "Mychesssite"; // Замените на ваш логин GitHub
+const REPO_NAME = "flowerdata"; // Замените на название вашего репозитория
+const FILE_PATH = "data.json"; // Путь к JSON-файлу
+const TOKEN = ""; // Ваш GitHub токен*/
+
+
+          
+          
+          
+// Функция для получения содержимого файла
+async function fetchColors() {
+  const response = await fetch(
+    `${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+    {
+      headers: { Authorization: `token ${TOKEN}` },
+    }
+  );
+  const data = await response.json();
+  const content = atob(data.content); // Раскодировать base64
+  return { colors: JSON.parse(content), sha: data.sha };
+}
+
+          
+          
+          
+          
+          
+// Функция для сохранения нового цвета
+async function saveColor(newColor, colorIndex = -1) //сли есть первый аргумент и второй то значение от второго аргумента обновляется значением New Color. Иначе добавляется новый аргумент в конец массива
+          {
+  const { colors, sha } = await fetchColors();
+
+  // Добавить новый цвет
+  colorIndex==-1 ? colors.push(newColor) : colors[index]=newColor;
+
+  // Отправить обновленный JSON на GitHub
+  const response = await fetch(
+    `${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+    {
+      method: "PUT",
+      headers: { 
+        Authorization: `token ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: "Added a new color",
+        content: btoa(JSON.stringify(colors, null, 2)), // Закодировать в base64
+        sha, // Указать SHA текущего файла
+      }),
+    }
+  );
+
+  if (response.ok) {
+    alert("Цвет сохранён!");
+  } else {
+    alert("Ошибка сохранения!");
+    console.error(await response.text());
+  }
+}
+          
+          
+          
+          
+          
+          
+          
+          
+          document.getElementById("confirm").onclick = 
+          function()
+          {
+              let hexcl = document.getElementById("colorSelector").value;
+              /*document.getElementById("colorSelector").style.backgroundColor = hexcl;*/
+              document.getElementById("color").style.backgroundColor =hexcl;/*"rgba("+(document.getElementById("colorSelector").style.backgroundColor).slice(4,-1)+" ,1)";
+              /*alert("rgba("+document.getElementById("colorSelector").style.backgroundColor.slice(4,-1)+" ,1)")*/
+              let clr = [parseInt(hexcl.slice(1,3),16),parseInt(hexcl.slice(3,5),16),parseInt(hexcl.slice(5,7),16)];
+              
+              var formData = new FormData();
+  // добавить к пересылке ещё пару ключ - значение
+  //formData.append("type", "color");
+  formData.append("red",clr[0]);
+  formData.append("green", clr[1]);
+  formData.append("blue", clr[2]);
+
+  // отослать
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://192.168.100.74:10200/flower/data");
+  xhr.send(formData);
+  
+          }
+          /*var formData = new FormData();
+
+  // добавить к пересылке ещё пару ключ - значение
+  formData.append("plain", "success");
+
+  // отослать
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://192.168.100.74:10200/flower/data");
+  xhr.send(formData);
+  alert("data sent");*/
+        </script>
+    <script>
+    
+    /*alert(window.innerHeight); */
+function gsid (elid)
+{
+    return document.getElementById(elid).style;
+}
+function p (amo)
+{
+    return Math.round(amo)+"px";
+}/*инкапсуляция*/
+function setSqr(objStyle,dimension,isRound)
+{
+    objStyle.width = p(dimension);
+    objStyle.height= objStyle.width;
+    if(isRound)     setR(objStyle,dimension/2);
+}
+function setR(objStyle,dimension)
+{
+    objStyle.borderRadius = p(dimension);
+}
+let contSt, imgSt, colSt, lampSt;
+[contSt, imgSt, colSt, lampSt] = [gsid("colorContainer"),gsid("image"),gsid("color"),gsid("lamp")];
+let w = window.innerWidth;
+let h = window.innerHeight;
+let orientationIsAlbub =w>h?true:false;
+let s = orientationIsAlbub?h:w;
+let freeSpace = w-s//свободное пространство сбоку/снизу
+let interfaceSize = (freeSpace)<s/3?s:freeSpace;
+
+setSqr(contSt,s,false);
+setSqr(imgSt,s*4/6,false);
+setSqr(colSt,s*4/6,true);
+setR(imgSt,s/4);
+lampSt.width=p(s*2/6);
+lampSt.height=p(s/2);
+colSt.boxShadow="0px 0px "+Math.floor(s/8)+"px "+Math.floor(s/8)+"px rgb(255, 255, 255) inset"
+imgSt.boxShadow="0px 0px "+Math.floor(s/100*7)+"px "+Math.floor(s/100*8)+"px rgb(255, 255, 255)"
+
+
+
+
+gsid("favourite").width = p(interfaceSize*0.99);
+gsid("interface").fontSize = p(interfaceSize/20);
+
+if(freeSpace>s/3)  {
+    let body =  gsid("body");
+    body.flexWarp = "nowrap";
+    body.alignContent = "center"
+    body.flexDirection = "row"
+    contSt.marginRight= p(s/40);}
+
+else    {
+    let body =  gsid("body");
+    body.flexWrap = "wrap";
+    body.justifyContent = "center";
+    body.flexDirection = "column";
+     contSt.marginBottom= p(s/40);
+}
+
+
+
+
+
+
+
+
+
+let favDivs = []
+let i = 0;
+    do{
+      const element = document.getElementById(`fav${i}`)
+      i=i+1;
+      if(element)
+      {favDivs.push(element);
+        setSqr(element.style,interfaceSize/7,false);
+        setR(element.style,interfaceSize/20)}
+        
+    else break;
+    }while(true);
+
+    favDivs.forEach((element, i) => {
+      element.onclick = function (){
+            
+        if(document.getElementById("set").checked)
+        {element.style.backgroundColor = document.getElementById("colorSelector").value;
+         sendToStorage(i,element.style.backgroundColor);
+        }
+        else
+        {   
+            let r,g,b;
+          //if (!(r&&g&&b))   return
+          [r,g,b]= String(element.style.backgroundColor).slice(4,-1).split(", ");
+            //if (!(r&&g&&b))   return
+            //alert(r+' '+g+' '+b)
+            let rr, gg, bb;
+            [rr,gg,bb]=[Number(r),Number(g),Number(b)]
+            //alert(rr+' '+gg+' '+bb)
+            //[r,g,b] = [rr.toString(16),gg.toString(16),bb.toString(16)]
+            r = rr.toString(16)
+            b = bb.toString(16)
+            g = gg.toString(16)
+            r = r.length===1?"0"+r:r;
+            g = g.length===1?"0"+g:g;
+            b = b.length===1?"0"+b:b;
+          //alert(r+g+b);
+          let colorValue = "#"+r+g+b;
+          //alert(colorValue)
+            document.getElementById("colorSelector").value = colorValue;}
+        
+
+      }}
+    )
+
+
+document.getElementById("colorSelector").onchange = function()
+{   sendToStorage("color",document.getElementById("colorSelector").value)}
+
+//получение json
+
+
+
+
+  async function getFromGit()//используем getFromGit().colors для получения массива цветов с github 
+{
+    const response = await fetch(
+      `${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+      {
+        headers: { Authorization: `token ${TOKEN}` },
+      }
+    );
+    const data = await response.json();
+    const content = atob(data.content); // Раскодировать base64
+    return { colors: JSON.parse(content), sha: data.sha };
+  }
+
+
+function sendToStorage(key, value){
+    localStorage.setItem(key, value)
+    return true
+  }
+
+  function getFromStorage(key){
+
+    let item = localStorage.getItem(key)
+    if(!item){
+      console.log(`ошибка при взятии из localStorage ${key}. Его нет`)
+    }
+    else return item 
+  }
+
+
+
+
+
+
+
+
+
+
+let cellSize = s*4/6/14.5;
+/*let orientationIsAlbum = document.documentElement.clientWidth>document.documentElement.clientHeight;
+orientationIsAlbum?(cellSize = Math.floor(document.documentElement.clientHeight/14.5)):(cellSize = Math.floor(document.documentElement.clientWidth/14.5));*/
+//alert(cellSize);
+const elements = document.querySelectorAll('.cell'); //устанавливаем размер каждой клетки
+    elements.forEach(element => {
+        element.onclick = function(){alert(1)}
+        element.style.width = cellSize + 'px'; 
+        element.style.height = cellSize + 'px'; 
+    }); 
+let rd = (Math.floor(cellSize / 3)) + 'px';
+let bw= (Math.floor(cellSize / 20)) + 'px';
+if (bw == '0px')  {bw = '1px';};
+let hourss = document.querySelectorAll('.clckrnd');
+    hourss.forEach(hr =>{hr.style.borderRadius = rd;
+                       hr.style.borderWidth = bw;});
+function positioning()
+    {
+    const coords = [        /*массив координат. первая строка это 12 или 0 часов и далее по стрелке. записаны координаты центра клетки в системе координат, где единичный отрезок это 1 клетка, а поле имеет размерность 14*14 клеток, координаты цетнра доски на поле 7,7 .левого верхнего угла 3,3*/
+        7, 0.5,
+        10, 1.5,
+        12.5, 4,
+        13.5, 7,
+        12.5, 10,
+        10, 12.5,
+        7, 13.5,
+        4, 12.5,
+        1.5, 10,
+        0.5, 7,
+        1.5, 4,
+        4, 1.5
+    ];
+    const hrs = document.querySelectorAll(".clckrnd");
+    //alert(hrs[1]);
+    let i = 0;
+    //alert("started");
+    hrs.forEach(tmp => {
+            tmp.style.position = 'absolute';
+            tmp.style.left = p(cellSize *(coords[i]-0.5)); /*условно если i = 2 то это 3 часа тоггда его координаты это coords[6] и coords[7], так как 0 часов это первый элемент массива */
+            tmp.style.top = p(cellSize *(coords[i+1]-0.5));
+            /*let msg = cellSize *(coords[i]-0.5)+' and ' + cellSize *(coords[i+1]-0.5);
+            alert(msg);*/
+            i++;
+            i++;
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.onload = function ()
+{
+    positioning();
+    favDivs.forEach((element, i) => {
+        element.style.backgroundColor = getFromStorage(i);
+    });
+    document.getElementById("colorSelector").value = getFromStorage("color");
+    
+    
+}
+
+
+
+
+
+/*
+//отправка json
+  async function saveColor(newColor, colorIndex = -1) //сли есть первый аргумент и второй то значение от второго аргумента обновляется значением New Color. Иначе добавляется новый аргумент в конец массива
+            {
+    const { colors, sha } = await fetchColors();
+
+    // Добавить новый цвет
+    colorIndex==-1 ? colors.push(newColor) : colors[colorIndex]=newColor;
+
+    // Отправить обновленный JSON на GitHub
+    const response = await fetch(
+      `${GITHUB_API_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+      {
+        method: "PUT",
+        headers: { 
+          Authorization: `token ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: "Added a new color",
+          content: btoa(JSON.stringify(colors, null, 2)), // Закодировать в base64
+          sha, // Указать SHA текущего файла
+        }),
+      }
+    );
+
+    if (response.ok) {
+      console.log("Цвет сохранён!");
+    } else {
+      console.log("Ошибка сохранения!");
+    }
+  }
+
+
+
+
+     if(localStorage.getItem('colors')){
+      return localStorage.getItem('colors').split(",")
+
+
+        const res = await fetchColors()
+        localStorage.setItem('colors', res.colors)
+
+*/
+    
+    
+    
+
+
+    
+    </script>
+</body>
