@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+/* 11 кругов
+диаметр маленького 40
+диаметр больщого
+92
+
+body, html
+{
+    
+    height: 100vh;
+    width: 100vw;
+	background-color:#121212;
+    position: relative;
+}
+.color_container{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vh;
+    max-height: 100vw;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    top: 0;
+    left: 0;
+}
+#color{
+    width: 60%;
+    height: 60%;
+
+    background-color: rgb(125, 38, 159);
+    position: absolute;
+    margin-bottom: calc((1vh + 1vw) * 5);
+    
+    
+    
+    background: radial-gradient(circle, rgba(255, 255, 0, 0.6) 30%, rgba(255, 255, 0, 0) 70%);
+    border-radius: 50%;
+
+    transition: 1s;
+}
+img
+{
+	width:40%;
+	height:50%;
+    position: relative;
+    z-index: 1;
+}
+#image
+{
+    position: relative;
+
+	height:100%;
+    width:100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+
+    transition:linear 1s;
+
+}
+
+#colorLabel
+{
+    margin:10px;
+}
+#colorSelect
+{
+    
+    width: 100%;
+    height: auto;
+    color: aliceblue;
+}
+#colorSelector
+{
+    margin:10px;
+}
+
+favorite
+{
+    text-align: center;
+    display:flex;
+    align-items: center;
+    
+}
+.fav
+{
+    display:inline-block;
+    background-color: white;
+    border: 2px solid black;
+    border-radius:5px;
+    height:calc((1vh + 1vw) * 2);
+    width:calc((1vh + 1vw) * 2);
+    margin: 5px;
+
+}
+
+#interface
+{
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

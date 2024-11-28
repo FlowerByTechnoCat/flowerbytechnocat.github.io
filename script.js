@@ -62,6 +62,80 @@ else    {
      contSt.marginBottom= p(s/40);
 }
 
+let modal =  document.getElementById("modal");
+
+// Get the button that opens the modal
+let btn = document.getElementById("settings");
+
+// Get the <span> element that closes the modal
+let span = document.getElementById("close");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+document.getElementById("changeBrightness").onchange = function()
+{
+    let ch1 = document.getElementById("changeBrightness").checked;
+    let ch2 = document.getElementById("flashMode").checked;
+    if(ch1==true)
+        {
+            ch2==true?document.getElementById("flashMode").checked=false:mode=1;
+            mode=1
+            sendToStorage("mode",1);
+        }
+    else
+        {
+            mode=0;
+            sendToStorage("mode",0);
+        }
+    alert(mode)
+}
+document.getElementById("flashMode").onchange = function()
+{
+    let ch1 = document.getElementById("changeBrightness").checked;
+    let ch2 = document.getElementById("flashMode").checked;
+    if(ch2==true)
+        {
+            ch1==true?document.getElementById("changeBrightness").checked=false:mode=2;
+            mode=2
+            sendToStorage("mode",2);
+        }
+    else
+        {
+            mode=0;
+            sendToStorage("mode",0);
+        }
+    alert(mode)
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    rBrightness = Math.floor(Number(document.getElementById("rBrightness").value)/15*200);
+    pBrightness = Math.floor(Number(document.getElementById("pBrightness").value)/15*250)
+    modal.style.display = "none";
+      alert(rBrightness);
+      alert(pBrightness);
+  }
+}
+
+
+
+
+
+
+
+
+let rBrightness = Math.floor(250/16*12);
+let pBrightness = Math.floor(200/16*4);
+let mode = 0;//0-ручное, 1 - мигание, 2 - flash
+
 
 
 
