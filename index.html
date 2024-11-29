@@ -99,7 +99,10 @@
 </div>
     <script src="script.js"></script>
       <script>
-          
+          if(!(getFromStorage("ip")))
+             {
+                sendToStorage("ip", prompt("Full adress"));
+             }
 //alert(mode);          
           
           
@@ -260,7 +263,7 @@ const compressed = new Uint8Array(data);
               formData.append("p",compressedp.buffer);
               formData.append("r",compressedr.buffer);*/
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://192.168.100.74:10200/flower/data");
+  xhr.open("POST", getFromStorage("ip")+":10200/flower/data");
   xhr.send(compressed.buffer);
               alert("Отправлено");
           }
