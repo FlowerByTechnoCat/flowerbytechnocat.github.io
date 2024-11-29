@@ -78,8 +78,10 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
+     rBrightness = Math.floor(Number(document.getElementById("rBrightness").value)/15*200);
+    pBrightness = Math.floor(Number(document.getElementById("pBrightness").value)/15*250)
 }
-document.getElementById("changeBrightness").onchange = function()
+/*document.getElementById("changeBrightness").onchange = function()
 {
     let ch1 = document.getElementById("changeBrightness").checked;
     let ch2 = document.getElementById("flashMode").checked;
@@ -112,7 +114,7 @@ document.getElementById("flashMode").onchange = function()
             sendToStorage("mode",0);
         }
     alert(mode)
-}
+}*/
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -120,8 +122,6 @@ window.onclick = function(event) {
     rBrightness = Math.floor(Number(document.getElementById("rBrightness").value)/15*200);
     pBrightness = Math.floor(Number(document.getElementById("pBrightness").value)/15*250)
     modal.style.display = "none";
-      alert(rBrightness);
-      alert(pBrightness);
   }
 }
 

@@ -83,16 +83,16 @@
 
 <div>
   <input type="range" id="pBrightness" min="0" max="15" value="12">
-  <label for="cowbell">Яркость центра</label>
+  <label for="cowbell">Яркость&nbsp;центра</label>
 </div>
-<div id="changeBrightnessDiv">           
+<!--<div id="changeBrightnessDiv">           
      <label for="changeBrightness" id="changeBrightnessLabel">Мигание</label>
       <input type="checkbox" id="changeBrightness">
  </div>
       <div id="flashDiv">           
      <label for="flashMode" id="flashModeLabel">Flash-режим</label>
       <input type="checkbox" id="flashMode">
- </div>
+ </div>-->
     
   </div>
 
@@ -100,7 +100,7 @@
     <script src="script.js"></script>
       <script>
           
-alert(mode);          
+//alert(mode);          
           
           
           
@@ -246,19 +246,23 @@ function HexExtract (hexcolor)
                           /*alert(iii*10+1+" "+temp1+" "+" "+temp2+" "+temp3);*/
                       }
                   }
+              data.push(rBrightness,pBrightness);
+              console.log(data);
 
   //formData.append("data", data);
 // Создаем Uint8Array для упаковки
 const compressed = new Uint8Array(data);
+              /*const compressedp = new Uint8Array(pBrightness);
+              const compressedr = new Uint8Array(rBrightness);
               console.log(compressed);
               formData.append("d",compressed.buffer);
               //formData.append("m",mode);
-              formData.append("p",pBrightness);
-              formData.append("r",rBrightness);
+              formData.append("p",compressedp.buffer);
+              formData.append("r",compressedr.buffer);*/
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://192.168.100.74:10200/flower/data");
-  xhr.send();
-              alert(12);
+  xhr.send(compressed.buffer);
+              alert("Отправлено");
           }
           /*var formData = new FormData();
 
